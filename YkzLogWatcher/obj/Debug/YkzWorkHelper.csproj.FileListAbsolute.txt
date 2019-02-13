@@ -1,0 +1,10 @@
+C:\Users\mvallejo\Desktop\Visual Studio Projects\YkzLogWatcher\YkzLogWatcher\obj\Debug\YkzWorkHelper.csprojResolveAssemblyReference.cache
+C:\Users\mvallejo\Desktop\Visual Studio Projects\YkzLogWatcher\YkzLogWatcher\obj\Debug\YkzWorkHelper.Properties.Resources.resources
+C:\Users\mvallejo\Desktop\Visual Studio Projects\YkzLogWatcher\YkzLogWatcher\obj\Debug\YkzWorkHelper.csproj.GenerateResource.Cache
+C:\Users\mvallejo\Desktop\Visual Studio Projects\YkzLogWatcher\YkzLogWatcher\obj\Debug\YkzWorkHelper.Configuracion.resources
+C:\Users\mvallejo\Desktop\Visual Studio Projects\YkzLogWatcher\YkzLogWatcher\obj\Debug\YkzWorkHelper.FormPrincipal.resources
+C:\Users\mvallejo\Desktop\Visual Studio Projects\YkzLogWatcher\YkzLogWatcher\bin\Debug\AyudanteDeTrabajo.exe.config
+C:\Users\mvallejo\Desktop\Visual Studio Projects\YkzLogWatcher\YkzLogWatcher\bin\Debug\AyudanteDeTrabajo.exe
+C:\Users\mvallejo\Desktop\Visual Studio Projects\YkzLogWatcher\YkzLogWatcher\bin\Debug\AyudanteDeTrabajo.pdb
+C:\Users\mvallejo\Desktop\Visual Studio Projects\YkzLogWatcher\YkzLogWatcher\obj\Debug\AyudanteDeTrabajo.exe
+C:\Users\mvallejo\Desktop\Visual Studio Projects\YkzLogWatcher\YkzLogWatcher\obj\Debug\AyudanteDeTrabajo.pdb
