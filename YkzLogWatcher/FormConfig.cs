@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
-using System.Data;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -9,8 +10,6 @@ namespace YkzWorkHelper
 {
     public partial class Configuracion : Form
     {
-        DataTable registros;
-
         /// <summary>
         /// Método constructor de la clase Configuración.
         /// </summary>
@@ -18,32 +17,15 @@ namespace YkzWorkHelper
         {
             InitializeComponent();
 
-            if (!File.Exists(Environment.CurrentDirectory + "\\registros.bin"))
-                File.Create(Environment.CurrentDirectory + "\\registros.bin");
-
             dataGridView1.Rows.Clear();
-            string file = Environment.CurrentDirectory + "\\registros.bin";
-            using (BinaryReader bw = new BinaryReader(File.Open(file, FileMode.Open)))
-            {
-                var nextValue = bw.PeekChar();
 
-                if (nextValue != -1)
-                {
-                    int n = bw.ReadInt32();
-                    int m = bw.ReadInt32();
-                    for (int i = 0; i < m; ++i)
-                    {
-                        dataGridView1.Rows.Add();
-                        for (int j = 0; j < n; ++j)
-                        {
-                            if (bw.ReadBoolean())
-                            {
-                                dataGridView1.Rows[i].Cells[j].Value = bw.ReadString();
-                            }
-                            else bw.ReadBoolean();
-                        }
-                    }
-                }
+            int counter = 0;
+            foreach (var item in Vista.accesosDirectos)
+            {
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[counter].Cells[0].Value = item.Key;
+                dataGridView1.Rows[counter].Cells[1].Value = item.Value;
+                counter++;
             }
         }
 
@@ -134,16 +116,7 @@ namespace YkzWorkHelper
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-
-            //registros.WriteXml("regs");
             this.Dispose();
-        }
-
-        private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            // TODO: Validar input.
-            if (e.ColumnIndex == 1)
-                MessageBox.Show("Valido");
         }
 
         /// <summary>
@@ -153,30 +126,39 @@ namespace YkzWorkHelper
         /// <param name="e"></param>
         private void Configuracion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string file = Environment.CurrentDirectory + "\\registros.bin";
-            using (BinaryWriter bw = new BinaryWriter(File.Open(file, FileMode.Create)))
-            {
-                bw.Write(dataGridView1.Columns.Count);
-                bw.Write(dataGridView1.Rows.Count);
-                foreach (DataGridViewRow dgvR in dataGridView1.Rows)
-                {
-                    for (int j = 0; j < dataGridView1.Columns.Count; ++j)
-                    {
-                        object val = dgvR.Cells[j].Value;
+            List<Registro> registros = new List<Registro>();
 
-                        if (val == null)
-                        {
-                            bw.Write(false);
-                            bw.Write(false);
-                        }
-                        else
-                        {
-                            bw.Write(true);
-                            bw.Write(val.ToString());
-                        }
-                    }
-                }
+            for (int j = 0; j < dataGridView1.RowCount - 1; ++j)
+            {
+                string key = (string)dataGridView1.Rows[j].Cells[0].Value;
+                string value = (string)dataGridView1.Rows[j].Cells[1].Value;
+                registros.Add(new Registro(key, value));
             }
+
+            string json = JsonConvert.SerializeObject(registros, Formatting.Indented);
+
+            using (StreamWriter escritor = new StreamWriter("registros.json", false))
+                escritor.Write(json);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            var ventanaFiltro = new ConfigurarFiltros();
+            ventanaFiltro.FormClosed += Filtros_FormClosed;
+            ventanaFiltro.Show();
+        }
+
+        private void Filtros_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Vista.filtros.Clear();
+
+            if (!File.Exists(Environment.CurrentDirectory + "\\filtros.json"))
+                File.Create(Environment.CurrentDirectory + "\\filtros.json").Dispose();
+
+            List<Filtro> filtros = JsonConvert.DeserializeObject<List<Filtro>>(File.ReadAllText(Environment.CurrentDirectory + "\\filtros.json"));
+
+            foreach (var item in filtros)
+                Vista.filtros.TryAdd(item.Palabra, item.Filtrar);
         }
     }
 }

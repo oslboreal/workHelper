@@ -51,8 +51,6 @@
             this.AyudanteDeTrabajo.Icon = ((System.Drawing.Icon)(resources.GetObject("AyudanteDeTrabajo.Icon")));
             this.AyudanteDeTrabajo.Text = "Ayudante de trabajo";
             this.AyudanteDeTrabajo.Visible = true;
-            this.AyudanteDeTrabajo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AyudanteDeTrabajo_MouseMove);
-            this.AyudanteDeTrabajo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.AyudanteDeTrabajo_MouseUp);
             // 
             // contextMenuStrip1
             // 
@@ -63,8 +61,9 @@
             this.configuraciónToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 136);
             this.contextMenuStrip1.Text = "Menú";
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
             // 
             // logsToolStripMenuItem
             // 
@@ -74,21 +73,20 @@
             this.logsToolStripMenuItem.Name = "logsToolStripMenuItem";
             this.logsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.logsToolStripMenuItem.Text = "Logs";
-            this.logsToolStripMenuItem.Click += new System.EventHandler(this.logsToolStripMenuItem_Click);
             // 
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.abrirToolStripMenuItem.Text = "Abrir carpeta";
-            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
+            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click_1);
             // 
             // limpiarToolStripMenuItem
             // 
             this.limpiarToolStripMenuItem.Name = "limpiarToolStripMenuItem";
-            this.limpiarToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.limpiarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.limpiarToolStripMenuItem.Text = "Limpiar";
-            this.limpiarToolStripMenuItem.Click += new System.EventHandler(this.limpiarToolStripMenuItem_Click);
+            this.limpiarToolStripMenuItem.Click += new System.EventHandler(this.limpiarToolStripMenuItem_Click_1);
             // 
             // parámetrosToolStripMenuItem
             // 
@@ -102,16 +100,16 @@
             // nSToolStripMenuItem
             // 
             this.nSToolStripMenuItem.Name = "nSToolStripMenuItem";
-            this.nSToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.nSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nSToolStripMenuItem.Text = "NS";
-            this.nSToolStripMenuItem.Click += new System.EventHandler(this.nSToolStripMenuItem_Click);
+            this.nSToolStripMenuItem.Click += new System.EventHandler(this.nSToolStripMenuItem_Click_1);
             // 
             // sACToolStripMenuItem
             // 
             this.sACToolStripMenuItem.Name = "sACToolStripMenuItem";
-            this.sACToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.sACToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sACToolStripMenuItem.Text = "SAC";
-            this.sACToolStripMenuItem.Click += new System.EventHandler(this.sACToolStripMenuItem_Click);
+            this.sACToolStripMenuItem.Click += new System.EventHandler(this.sACToolStripMenuItem_Click_1);
             // 
             // accesosDirectosToolStripMenuItem
             // 
@@ -124,7 +122,7 @@
             this.configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
             this.configuraciónToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.configuraciónToolStripMenuItem.Text = "Configuracion";
-            this.configuraciónToolStripMenuItem.Click += new System.EventHandler(this.configuraciónToolStripMenuItem_Click);
+            this.configuraciónToolStripMenuItem.Click += new System.EventHandler(this.configuraciónToolStripMenuItem_Click_1);
             // 
             // salirToolStripMenuItem
             // 
