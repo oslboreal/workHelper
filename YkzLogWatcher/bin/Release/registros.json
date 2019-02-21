@@ -4,11 +4,19 @@
     "Ruta": "\\\\it-repositorio\\IT-Documentos\\Productos\\Repositorio YAKUZA"
   },
   {
+    "Nombre": "Silvina Schreiber",
+    "Ruta": "\\\\it-silvina"
+  },
+  {
     "Nombre": "Matías Nadali",
     "Ruta": "\\\\it-matias"
   },
   {
     "Nombre": "Marcos Vallejo",
-    "Ruta": "\\\\it-marcos"
+    "Ruta": "\\\\it-marcos\\Public"
+  },
+  {
+    "Nombre": "Matías Ostrovsky",
+    "Ruta": "\\\\it-matias2"
   }
 ]

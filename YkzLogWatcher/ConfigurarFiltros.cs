@@ -13,7 +13,6 @@ namespace YkzWorkHelper
             InitializeComponent();
         }
 
-        // Load filter configuration.
         private void ConfigurarFiltros_Load(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
@@ -28,7 +27,6 @@ namespace YkzWorkHelper
             }
         }
 
-        // Save filter configuration.
         private void ConfigurarFiltros_FormClosing(object sender, FormClosingEventArgs e)
         {
             List<Filtro> configuracion = new List<Filtro>();

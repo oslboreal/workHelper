@@ -10,6 +10,9 @@ namespace YkzWorkHelper
 {
     public partial class Configuracion : Form
     {
+        private bool mostrarLogs;
+        private bool mostrarErrores;
+
         /// <summary>
         /// Método constructor de la clase Configuración.
         /// </summary>
@@ -36,6 +39,12 @@ namespace YkzWorkHelper
         /// <param name="e"></param>
         private void Configuracion_Load(object sender, EventArgs e)
         {
+            ActualizarUI();
+        }
+
+        private void ActualizarUI()
+        {
+            // Registro del sistema.
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
             {
                 var value = key.GetValue("YkzWorkHelper");
@@ -51,6 +60,11 @@ namespace YkzWorkHelper
                     checkBox1.Checked = true;
                 }
             }
+
+            // Configuraciones.
+            checkboxLogs.Checked = Vista.RegistrarLogs;
+            checkboxErrores.Checked = Vista.RegistrarErrores;
+            textBox1.Text = Vista.RepositorioEquipo;
         }
 
         /// <summary>
@@ -126,6 +140,7 @@ namespace YkzWorkHelper
         /// <param name="e"></param>
         private void Configuracion_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // -- Almacenamiento de registros. 
             List<Registro> registros = new List<Registro>();
 
             for (int j = 0; j < dataGridView1.RowCount - 1; ++j)
@@ -139,8 +154,18 @@ namespace YkzWorkHelper
 
             using (StreamWriter escritor = new StreamWriter("registros.json", false))
                 escritor.Write(json);
+
+            // -- Almacenamiento de settings.
+            Vista.RegistrarLogs = checkboxLogs.Checked;
+            Vista.RegistrarErrores = checkboxErrores.Checked;
+            Vista.RepositorioEquipo = textBox1.Text;
         }
 
+        /// <summary>
+        /// Método de sobrecarga de apertura de formulario de filtros.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click_1(object sender, EventArgs e)
         {
             var ventanaFiltro = new ConfigurarFiltros();
@@ -148,6 +173,11 @@ namespace YkzWorkHelper
             ventanaFiltro.Show();
         }
 
+        /// <summary>
+        /// Evento producido al cerrar el formulario de filtros.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Filtros_FormClosed(object sender, FormClosedEventArgs e)
         {
             Vista.filtros.Clear();
@@ -159,6 +189,20 @@ namespace YkzWorkHelper
 
             foreach (var item in filtros)
                 Vista.filtros.TryAdd(item.Palabra, item.Filtrar);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            mostrarLogs = checkboxLogs.Checked;
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            mostrarErrores = checkboxErrores.Checked;
         }
     }
 }
